@@ -19,7 +19,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate {
-    var indicatorViewTag: Int {
+    fileprivate var indicatorViewTag: Int {
         return -9999
     }
     
