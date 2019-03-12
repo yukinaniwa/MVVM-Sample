@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class LoginViewController: UIViewController, Instantiatable {
 
@@ -15,10 +17,13 @@ class LoginViewController: UIViewController, Instantiatable {
     @IBOutlet private weak var idTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     
+    private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.bindViewModel()
     }
     
     @IBAction func didTapDoneButton(_ sender: Any) {
@@ -33,20 +38,37 @@ class LoginViewController: UIViewController, Instantiatable {
         self.loginViewModel.inputs.set(userId: self.idTextField.text ?? "")
         self.loginViewModel.inputs.set(userId: self.passwordTextField.text ?? "")
         
+
+        self.fetchViewModel()
+    }
+
+}
+
+extension LoginViewController {
+    func fetchViewModel() {
         self.appDelegate.startIndicator()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.appDelegate.stopIndicator()
-        }
+        
+        self.loginViewModel.inputs.fetch()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func bindViewModel() {
+        self.loginViewModel.outputs.fetchResult.emit(onNext: { [weak self] (fetchResult) in
+            
+            guard let `self` = self else { return }
+            
+            self.appDelegate.stopIndicator()
+            
+            log.verbose("fetchResult: \(fetchResult)")
+            
+            switch fetchResult {
+            case .success:
+                break
+            case .cancel:
+                break
+            case .error(let error):
+                break
+            }
+            
+        }).disposed(by: disposeBag)
     }
-    */
-
 }
