@@ -48,9 +48,9 @@ final class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewM
     }
     
     // MARK: - Outputs
-    var fetchResult:Signal<FetchResult> {
+    private(set) lazy var fetchResult:Signal<FetchResult> = {
         return self.fetchResultRelay.asSignal()
-    }
+    }()
     
     func fetch() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
