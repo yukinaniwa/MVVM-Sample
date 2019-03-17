@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol TopViewModelInputs {
-    func fetch()
+    func fetch(processTime: TimeInterval, isForceError: Bool)
 }
 
 protocol TopViewModelOutputs {
@@ -39,8 +39,8 @@ final class TopViewModel: TopViewModelType, TopViewModelInputs, TopViewModelOutp
         return self.fetchResultRelay.asSignal()
     }()
     
-    func fetch() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
+    func fetch(processTime: TimeInterval = 2.0, isForceError: Bool = false) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + processTime) {
             self.fetchResultRelay.accept(.success)
         }
     }
