@@ -62,11 +62,14 @@ extension LoginViewController {
             
             switch fetchResult {
             case .success:
-                break
+                let vc = TopViewController.loadFromStoryboard()
+                let topViewController = UINavigationController(rootViewController: vc)
+                
+                self.present(topViewController, animated: true, completion: nil)
             case .cancel:
                 break
             case .error(let error):
-                break
+                self.alert(message: "\(error.code), \(error.message)")
             }
             
         }).disposed(by: disposeBag)

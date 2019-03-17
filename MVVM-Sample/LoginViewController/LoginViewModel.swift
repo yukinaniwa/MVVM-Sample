@@ -36,6 +36,7 @@ final class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewM
     private var userId: String = ""
     private var password: String = ""
     
+    private var loginResponseModel: ResponseModel.LoginResponseModel?
     private var fetchResultRelay = PublishRelay<FetchResult>()
     
     // MARK: - Inputs
@@ -54,7 +55,26 @@ final class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewM
     
     func fetch() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
-            self.fetchResultRelay.accept(.success)
+            
+            let jsonString = """
+                {
+                  "userToken": "user_xxxxxxxxxx"
+                }
+            """
+            
+            guard let responseData = jsonString.data(using: .utf8) else {
+                self.fetchResultRelay.accept(.error(error: ResponseError(code: 500, message: "json perse error")))
+                return
+            }
+            
+            do {
+                let responseModel = try JSONDecoder().decode(ResponseModel.LoginResponseModel.self, from: responseData)
+                
+                self.loginResponseModel = responseModel
+                self.fetchResultRelay.accept(.success)
+            } catch {
+                self.fetchResultRelay.accept(.error(error: ResponseError(error: error)))
+            }
         }
     }
 }

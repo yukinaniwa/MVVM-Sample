@@ -11,5 +11,26 @@ import Foundation
 enum FetchResult {
     case success
     case cancel
-    case error(error: Error)
+    case error(error: ResponseError)
+}
+
+struct ResponseError {
+    let code: UInt
+    let message: String
+    
+    init(code: UInt, message: String) {
+        self.code = code
+        self.message = message
+    }
+    
+    init(error: Error) {
+        self.code = 400
+        self.message = error.localizedDescription
+    }
+}
+
+enum ResponseModel {
+    struct LoginResponseModel: Decodable {
+        var userToken: String
+    }
 }

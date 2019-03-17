@@ -32,3 +32,23 @@ extension UIViewController {
         return appDelegate
     }
 }
+
+extension UIViewController {
+    func alert(message: String) {
+        let alert: UIAlertController = UIAlertController(title: nil, message: message, preferredStyle:  UIAlertController.Style.alert)
+        
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            log.verbose("alert ok")
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+            log.verbose("alert cancel")
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+}
