@@ -41,7 +41,12 @@ final class TopViewModel: TopViewModelType, TopViewModelInputs, TopViewModelOutp
     
     func fetch(processTime: TimeInterval = 2.0, isForceError: Bool = false) {
         DispatchQueue.main.asyncAfter(deadline: .now() + processTime) {
-            self.fetchResultRelay.accept(.success)
+            
+            if isForceError == false {
+                self.fetchResultRelay.accept(.success)
+            } else {
+                 self.fetchResultRelay.accept(.error(error: ResponseError(code: 400, message: "error message.")))
+            }
         }
     }
 }
