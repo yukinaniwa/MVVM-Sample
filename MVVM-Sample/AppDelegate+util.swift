@@ -19,16 +19,12 @@ extension AppDelegate {
 }
 
 extension AppDelegate {
-    fileprivate var indicatorViewTag: Int {
-        return -9999
-    }
     
     func startIndicator() {
         
         if self.indicator == nil {
             self.indicator = UIActivityIndicatorView()
             self.indicator?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            self.indicator?.tag = self.indicatorViewTag
             
             self.indicator?.style = UIActivityIndicatorView.Style.whiteLarge
         }
