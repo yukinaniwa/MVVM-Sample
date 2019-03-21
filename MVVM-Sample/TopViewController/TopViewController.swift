@@ -37,6 +37,20 @@ extension TopViewController {
         
         self.appDelegate.startIndicator()
         
+        Signal.combineLatest(
+            self.topViewModelAA.outputs.fetchResult,
+            self.topViewModelBB.outputs.fetchResult,
+            self.topViewModelCC.outputs.fetchResult
+            ).emit(onNext: { [weak self] (resultAA, resultBB, resultCC) in
+                
+                guard let `self` = self else { return }
+                
+                self.appDelegate.stopIndicator()
+                
+                log.verbose("topResult: combineLatest: \(resultAA),\(resultBB),\(resultAA)")
+            }).disposed(by: disposeBag)
+
+        
         Signal.zip(
             self.topViewModelAA.outputs.fetchResult,
             self.topViewModelBB.outputs.fetchResult,
