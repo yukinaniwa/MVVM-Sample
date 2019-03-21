@@ -25,31 +25,40 @@ extension AppDelegate {
     
     func startIndicator() {
         
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        activityIndicator.tag = self.indicatorViewTag
-        
-        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
-
-        activityIndicator.startAnimating()
-        
-        self.window?.addSubview(activityIndicator)
-        
-        if let window = self.window {
-            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                window.centerXAnchor.constraint(equalTo: activityIndicator.centerXAnchor),
-                window.centerYAnchor.constraint(equalTo: activityIndicator.centerYAnchor),
-                window.widthAnchor.constraint(equalTo: activityIndicator.widthAnchor),
-                window.heightAnchor.constraint(equalTo: activityIndicator.heightAnchor),
-                ])
+        if self.indicator == nil {
+            self.indicator = UIActivityIndicatorView()
+            self.indicator?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            self.indicator?.tag = self.indicatorViewTag
+            
+            self.indicator?.style = UIActivityIndicatorView.Style.whiteLarge
         }
+        self.indicator?.startAnimating()
+        
+        guard let indicator = self.indicator, let window = self.window else {
+            preconditionFailure()
+        }
+        
+        window.addSubview(indicator)
+        indicator.bringSubviewToFront(window)
+        
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            window.centerXAnchor.constraint(equalTo: indicator.centerXAnchor),
+            window.centerYAnchor.constraint(equalTo: indicator.centerYAnchor),
+            window.widthAnchor.constraint(equalTo: indicator.widthAnchor),
+            window.heightAnchor.constraint(equalTo: indicator.heightAnchor),
+            ])
+
     }
     
     func stopIndicator() {
-        if let view = self.window?.viewWithTag(self.indicatorViewTag) as? UIActivityIndicatorView {
-            view.stopAnimating()
-            view.removeFromSuperview()
+        
+        guard let indicator = self.indicator else {
+            preconditionFailure()
         }
+        
+        indicator.stopAnimating()
+        indicator.removeFromSuperview()
+        
     }
 }

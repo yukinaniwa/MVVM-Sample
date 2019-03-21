@@ -17,7 +17,33 @@
                     <view key="view" contentMode="scaleToFill" id="FOd-2g-WgP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IT-c9-4dn">
+                                <rect key="frame" x="24" y="607" width="327" height="44"/>
+                                <color key="backgroundColor" red="0.36470588240000001" green="0.67450980390000004" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="W9B-Xy-LUP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Fetch!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapedFetch:" destination="cvM-i1-lGe" eventType="touchUpInside" id="22m-3T-eD4"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7IT-c9-4dn" firstAttribute="leading" secondItem="ehr-hZ-mPr" secondAttribute="leading" constant="24" id="Yf9-So-3EB"/>
+                            <constraint firstItem="ehr-hZ-mPr" firstAttribute="trailing" secondItem="7IT-c9-4dn" secondAttribute="trailing" constant="24" id="d5X-kf-uJq"/>
+                            <constraint firstItem="ehr-hZ-mPr" firstAttribute="bottom" secondItem="7IT-c9-4dn" secondAttribute="bottom" constant="16" id="ikL-JJ-gfZ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ehr-hZ-mPr"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
