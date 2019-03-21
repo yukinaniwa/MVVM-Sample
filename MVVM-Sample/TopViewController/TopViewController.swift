@@ -11,8 +11,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TopViewController: UIViewController, Instantiatable {
+final class TopViewController: UIViewController, Instantiatable {
 
+    @IBOutlet private weak var tableView: UITableView!
+    
     private var topViewModelAA: TopViewModelType = TopViewModel()
     private var topViewModelBB: TopViewModelType = TopViewModel()
     private var topViewModelCC: TopViewModelType = TopViewModel()
@@ -22,7 +24,15 @@ class TopViewController: UIViewController, Instantiatable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.estimatedRowHeight = 68
+        self.tableView.rowHeight = 68
+        
         self.bindViewModel()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     @IBAction private func didTapedFetch(_ sender: Any) {

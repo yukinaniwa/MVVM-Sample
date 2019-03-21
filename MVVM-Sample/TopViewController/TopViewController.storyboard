@@ -55,6 +55,9 @@
                         <viewLayoutGuide key="safeArea" id="ehr-hZ-mPr"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="Cg8-Sa-TOw" id="eOZ-qH-r5L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4WY-g9-aVT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
