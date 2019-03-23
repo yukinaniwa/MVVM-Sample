@@ -21,6 +21,41 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Cg8-Sa-TOw">
                                 <rect key="frame" x="0.0" y="64" width="375" height="527"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="86" id="lDu-EM-ykl" customClass="CustomCell" customModule="MVVM_Sample" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lDu-EM-ykl" id="sHi-4a-27H">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbr-hL-oXu" customClass="SkeletonView" customModule="MVVM_Sample" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BN0-te-stQ">
+                                                    <rect key="frame" x="16" y="32.5" width="351" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BN0-te-stQ" firstAttribute="leading" secondItem="sHi-4a-27H" secondAttribute="leading" constant="16" id="Zl1-m3-nx0"/>
+                                                <constraint firstAttribute="trailing" secondItem="mbr-hL-oXu" secondAttribute="trailing" id="cH0-sj-1Ba"/>
+                                                <constraint firstItem="mbr-hL-oXu" firstAttribute="top" secondItem="sHi-4a-27H" secondAttribute="top" id="l9Y-mI-wyq"/>
+                                                <constraint firstAttribute="trailing" secondItem="BN0-te-stQ" secondAttribute="trailing" constant="8" id="mXM-A6-hYR"/>
+                                                <constraint firstAttribute="bottom" secondItem="mbr-hL-oXu" secondAttribute="bottom" id="qK7-VP-l3b"/>
+                                                <constraint firstItem="BN0-te-stQ" firstAttribute="centerY" secondItem="sHi-4a-27H" secondAttribute="centerY" id="rBi-uX-jTD"/>
+                                                <constraint firstItem="mbr-hL-oXu" firstAttribute="leading" secondItem="sHi-4a-27H" secondAttribute="leading" id="zoa-qM-471"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="BN0-te-stQ" id="PgI-8i-4ab"/>
+                                            <outlet property="skeletonView" destination="mbr-hL-oXu" id="QWT-b8-K58"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IT-c9-4dn">
                                 <rect key="frame" x="24" y="607" width="327" height="44"/>

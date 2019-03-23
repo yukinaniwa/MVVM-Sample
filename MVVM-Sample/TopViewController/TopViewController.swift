@@ -131,9 +131,15 @@ extension TopViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
         
-        cell.textLabel?.text = "aaaa"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CustomCell else {
+            let cell = UITableViewCell()
+            return cell
+        }
+        
+        cell.skeletonView.startAnimating()
+        
+        cell.descriptionLabel.text = "aaa"
         
         return cell
     }
@@ -233,4 +239,9 @@ extension TopViewController {
         self.topViewModelBB.inputs.fetch(processTime: 1.5, isForceError: false)
         self.topViewModelCC.inputs.fetch(processTime: 2.2, isForceError: false)
     }
+}
+
+final class CustomCell: UITableViewCell {
+    @IBOutlet weak var skeletonView: SkeletonView!
+    @IBOutlet weak var descriptionLabel: UILabel!
 }
