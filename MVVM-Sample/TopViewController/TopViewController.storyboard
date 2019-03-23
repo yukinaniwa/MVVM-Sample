@@ -67,6 +67,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ehr-hZ-mPr"/>
                     </view>
+                    <navigationItem key="navigationItem" title="トップ" id="p0n-ax-78K">
+                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="WkE-gG-uLJ">
+                            <connections>
+                                <action selector="didTapedDismissButton:" destination="cvM-i1-lGe" id="vLa-oQ-iRH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Reload" id="Xsz-OO-n9a">
+                            <connections>
+                                <action selector="didTapedReloadButton:" destination="cvM-i1-lGe" id="5fW-Ma-q1N"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="Cg8-Sa-TOw" id="eOZ-qH-r5L"/>

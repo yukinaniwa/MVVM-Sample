@@ -108,6 +108,29 @@ final class TopViewController: UIViewController, Instantiatable {
         super.viewDidAppear(animated)
         
     }
+    
+    @IBAction func didTapedDismissButton(_ sender: Any) {
+        
+        log.verbose("didTapedDismissButton.")
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didTapedReloadButton(_ sender: Any) {
+        
+        log.verbose("didTapedReloadButton.")
+        
+        self.topTableViewModel.inputs.set(isFinishModelAA: false)
+        self.topTableViewModel.inputs.set(isFinishModelBB: false)
+        self.topTableViewModel.inputs.set(isFinishModelCC: false)
+        
+        self.topTableViewModel.inputs.set(isFinishModelZip: false)
+        self.topTableViewModel.inputs.set(isFinishModelCombineLatest: false)
+        
+        self.tableView.reloadData()
+        
+        self.fetchViewModel()
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -221,9 +244,11 @@ extension TopViewController {
                 
                 guard let `self` = self else { return }
                 
-                self.appDelegate.stopIndicator()
+                self.topTableViewModel.inputs.set(isFinishModelCombineLatest: true)
                 
-                log.verbose("topResult: combineLatest: \(resultAA),\(resultBB),\(resultAA)")
+                self.tableView.reloadRows(at: [IndexPath(row: SignalCombineLaatestRows.combineLatestModel.rawValue, section: Sections.signalCombineLatest.rawValue)], with: .automatic)
+                
+                log.verbose("topResult: combineLatest: \(self), \(resultAA),\(resultBB),\(resultAA)")
             }).disposed(by: disposeBag)
 
         
@@ -237,6 +262,10 @@ extension TopViewController {
                 
                 self.appDelegate.stopIndicator()
                 
+                self.topTableViewModel.inputs.set(isFinishModelZip: true)
+                
+                self.tableView.reloadRows(at: [IndexPath(row: SignalZipRows.zipModel.rawValue, section: Sections.signalZip.rawValue)], with: .automatic)
+                
                 log.verbose("topResult: Zip: \(resultAA),\(resultBB),\(resultAA)")
             }).disposed(by: disposeBag)
         
@@ -248,7 +277,9 @@ extension TopViewController {
             
             switch fetchResult {
             case .success:
-                break
+                self.topTableViewModel.inputs.set(isFinishModelAA: true)
+                
+                self.tableView.reloadRows(at: [IndexPath(row: SignalRows.modelAA.rawValue, section: Sections.signal.rawValue)], with: .automatic)
             case .cancel:
                 break
             case .error(let error):
@@ -265,7 +296,9 @@ extension TopViewController {
             
             switch fetchResult {
             case .success:
-                break
+                self.topTableViewModel.inputs.set(isFinishModelBB: true)
+                
+                self.tableView.reloadRows(at: [IndexPath(row: SignalRows.modelBB.rawValue, section: Sections.signal.rawValue)], with: .automatic)
             case .cancel:
                 break
             case .error(let error):
@@ -282,7 +315,9 @@ extension TopViewController {
             
             switch fetchResult {
             case .success:
-                break
+                self.topTableViewModel.inputs.set(isFinishModelCC: true)
+                
+                self.tableView.reloadRows(at: [IndexPath(row: SignalRows.modelCC.rawValue, section: Sections.signal.rawValue)], with: .automatic)
             case .cancel:
                 break
             case .error(let error):
@@ -296,9 +331,9 @@ extension TopViewController {
         
         self.appDelegate.startIndicator()
         
-        self.topViewModelAA.inputs.fetch(processTime: 1.0, isForceError: false)
-        self.topViewModelBB.inputs.fetch(processTime: 1.5, isForceError: false)
-        self.topViewModelCC.inputs.fetch(processTime: 2.2, isForceError: false)
+        self.topViewModelAA.inputs.fetch(processTime: 1.5, isForceError: false)
+        self.topViewModelBB.inputs.fetch(processTime: 2.8, isForceError: false)
+        self.topViewModelCC.inputs.fetch(processTime: 4.8, isForceError: false)
     }
 }
 
@@ -309,7 +344,7 @@ final class CustomCell: UITableViewCell {
     func updateCells(enable: Bool) {
         
         self.skeletonView.isHidden = !enable
-        self.descriptionLabel.isHidden = !enable
+        self.descriptionLabel.isHidden = enable
         
         if enable == true {
             self.skeletonView.startAnimating()

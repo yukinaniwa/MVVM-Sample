@@ -46,7 +46,7 @@ final class TopTableViewModel: TopTableViewModelType, TopTableViewModelInputs, T
     }
     
     func set(isFinishModelBB: Bool) {
-        self.isFinishModelAA = isFinishModelBB
+        self.isFinishModelBB = isFinishModelBB
     }
     
     func set(isFinishModelCC: Bool) {
