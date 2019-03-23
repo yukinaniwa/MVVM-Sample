@@ -24,6 +24,7 @@
 		5CE6FCB22235F77F00875B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CE6FCB02235F77F00875B68 /* LaunchScreen.storyboard */; };
 		5CE6FCBD2235F77F00875B68 /* MVVM_SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6FCBC2235F77F00875B68 /* MVVM_SampleTests.swift */; };
 		5CE6FCC82235F77F00875B68 /* MVVM_SampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6FCC72235F77F00875B68 /* MVVM_SampleUITests.swift */; };
+		B63C1AF12245DD5A00631728 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63C1AF02245DD5A00631728 /* extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		5CE6FCC72235F77F00875B68 /* MVVM_SampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVM_SampleUITests.swift; sourceTree = "<group>"; };
 		5CE6FCC92235F77F00875B68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C68C9B03391E318FDCA52B7 /* Pods-MVVM-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVM-Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-MVVM-Sample/Pods-MVVM-Sample.release.xcconfig"; sourceTree = "<group>"; };
+		B63C1AF02245DD5A00631728 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				5CDD86C62236934600010945 /* APIModel */,
 				5C253AE42235F8A700B688FC /* LoginViewController */,
 				5CDD86C9223DE78C00010945 /* TopViewController */,
+				B63C1AF02245DD5A00631728 /* extensions.swift */,
 				5CE6FCA72235F77D00875B68 /* AppDelegate.swift */,
 				5C253AEB22362BD100B688FC /* AppDelegate+util.swift */,
 				5CE6FCA92235F77D00875B68 /* ViewController.swift */,
@@ -399,6 +402,7 @@
 				5C253AEC22362BD100B688FC /* AppDelegate+util.swift in Sources */,
 				5C253AE62235F8C200B688FC /* LoginViewController.swift in Sources */,
 				5CDD86CF223DE7DC00010945 /* TopViewModel.swift in Sources */,
+				B63C1AF12245DD5A00631728 /* extensions.swift in Sources */,
 				5CDD86CB223DE79B00010945 /* TopViewController.swift in Sources */,
 				5CDD86C82237CB9600010945 /* ResponseModel.swift in Sources */,
 				5CE6FCAA2235F77D00875B68 /* ViewController.swift in Sources */,

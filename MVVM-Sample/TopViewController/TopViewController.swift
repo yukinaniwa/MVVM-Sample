@@ -13,6 +13,48 @@ import RxCocoa
 
 final class TopViewController: UIViewController, Instantiatable {
 
+    private enum Sections: Int, CaseIterable {
+        case signal
+        case signalZip
+        case signalCombineLatest
+        
+        var rows: Int {
+            switch self {
+            case .signal:
+                return SignalRows.allCases.count
+            case .signalZip:
+                return SignalZipRows.allCases.count
+            case .signalCombineLatest:
+                return SignalCombineLaatestRows.allCases.count
+            }
+        }
+        
+        var sectionTitle: String {
+            switch self {
+            case .signal:
+                return "signal"
+            case .signalZip:
+                return "signalZip"
+            case .signalCombineLatest:
+                return "signalCombineLatest"
+            }
+        }
+    }
+    
+    private enum SignalRows: Int, CaseIterable {
+        case modelAA
+        case modelBB
+        case modelCC
+    }
+    
+    private enum SignalZipRows: Int, CaseIterable {
+        case zipModel
+    }
+    
+    private enum SignalCombineLaatestRows: Int, CaseIterable {
+        case combineLatestModel
+    }
+    
     @IBOutlet private weak var tableView: UITableView!
     
     private var topViewModelAA: TopViewModelType = TopViewModel()
@@ -23,9 +65,12 @@ final class TopViewController: UIViewController, Instantiatable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.tableView.estimatedRowHeight = 68
-        self.tableView.rowHeight = 68
+        
+        self.tableView.estimatedRowHeight = 46
+        self.tableView.rowHeight = 46
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
         self.bindViewModel()
     }
@@ -38,6 +83,59 @@ final class TopViewController: UIViewController, Instantiatable {
     @IBAction private func didTapedFetch(_ sender: Any) {
         self.fetchViewModel()
     }
+}
+
+// MARK: - UITableViewDelegate
+
+extension TopViewController: UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Sections.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 72
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    
+        guard let section = Sections(rawValue: section) else {
+            preconditionFailure()
+        }
+        
+        let label = UILabel()
+        
+        label.backgroundColor = UIColor(hex: "FFC408")
+        
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 26)
+        
+        label.text = "  \(section.sectionTitle)"
+        
+        return label
+    }
+}
+
+// MARK: - UITableViewDataSource
+
+extension TopViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let section = Sections(rawValue: section) else {
+            preconditionFailure()
+        }
+        
+        return section.rows
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        
+        cell.textLabel?.text = "aaaa"
+        
+        return cell
+    }
+    
 }
 
 // MARK: - viewModel
