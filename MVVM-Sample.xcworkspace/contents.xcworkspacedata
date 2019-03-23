@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:APIResponse.swift">
-   </FileRef>
-   <FileRef
       location = "group:MVVM-Sample.xcodeproj">
    </FileRef>
    <FileRef

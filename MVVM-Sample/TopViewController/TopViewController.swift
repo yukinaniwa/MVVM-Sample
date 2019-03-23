@@ -66,8 +66,9 @@ final class TopViewController: UIViewController, Instantiatable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.estimatedRowHeight = 46
-        self.tableView.rowHeight = 46
+        self.tableView.rowHeight = 42
+        self.tableView.sectionFooterHeight = CGFloat.leastNormalMagnitude
+        self.tableView.sectionHeaderHeight = CGFloat.leastNormalMagnitude
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -94,7 +95,7 @@ extension TopViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 72
+        return 56
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -105,7 +106,7 @@ extension TopViewController: UITableViewDelegate {
         
         let label = UILabel()
         
-        label.backgroundColor = UIColor(hex: "FFC408")
+        label.backgroundColor = UIColor(hex: "F2BD2D")
         
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 26)
@@ -121,6 +122,7 @@ extension TopViewController: UITableViewDelegate {
 extension TopViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         guard let section = Sections(rawValue: section) else {
             preconditionFailure()
         }
@@ -135,7 +137,6 @@ extension TopViewController: UITableViewDataSource {
         
         return cell
     }
-    
 }
 
 // MARK: - viewModel
