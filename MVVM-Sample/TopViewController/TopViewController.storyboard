@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Cg8-Sa-TOw">
-                                <rect key="frame" x="0.0" y="64" width="375" height="527"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="86" id="lDu-EM-ykl" customClass="CustomCell" customModule="MVVM_Sample" customModuleProvider="target">
@@ -57,33 +57,11 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IT-c9-4dn">
-                                <rect key="frame" x="24" y="607" width="327" height="44"/>
-                                <color key="backgroundColor" red="0.36470588240000001" green="0.67450980390000004" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="W9B-Xy-LUP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Fetch!">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="didTapedFetch:" destination="cvM-i1-lGe" eventType="touchUpInside" id="22m-3T-eD4"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7IT-c9-4dn" firstAttribute="top" secondItem="Cg8-Sa-TOw" secondAttribute="bottom" constant="16" id="GwG-jJ-JL0"/>
                             <constraint firstItem="Cg8-Sa-TOw" firstAttribute="leading" secondItem="ehr-hZ-mPr" secondAttribute="leading" id="IOR-k3-toX"/>
-                            <constraint firstItem="7IT-c9-4dn" firstAttribute="leading" secondItem="ehr-hZ-mPr" secondAttribute="leading" constant="24" id="Yf9-So-3EB"/>
-                            <constraint firstItem="ehr-hZ-mPr" firstAttribute="trailing" secondItem="7IT-c9-4dn" secondAttribute="trailing" constant="24" id="d5X-kf-uJq"/>
-                            <constraint firstItem="ehr-hZ-mPr" firstAttribute="bottom" secondItem="7IT-c9-4dn" secondAttribute="bottom" constant="16" id="ikL-JJ-gfZ"/>
+                            <constraint firstItem="ehr-hZ-mPr" firstAttribute="bottom" secondItem="Cg8-Sa-TOw" secondAttribute="bottom" id="Ll7-yg-8km"/>
                             <constraint firstItem="Cg8-Sa-TOw" firstAttribute="trailing" secondItem="ehr-hZ-mPr" secondAttribute="trailing" id="k8k-Me-Rnj"/>
                             <constraint firstItem="Cg8-Sa-TOw" firstAttribute="top" secondItem="ehr-hZ-mPr" secondAttribute="top" id="nv3-5x-Fdb"/>
                         </constraints>

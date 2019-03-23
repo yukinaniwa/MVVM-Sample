@@ -22,39 +22,41 @@ extension AppDelegate {
     
     func startIndicator() {
         
-        if self.indicator == nil {
-            self.indicator = UIActivityIndicatorView()
-            self.indicator?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        DispatchQueue.main.async {
+            if self.indicator == nil {
+                self.indicator = UIActivityIndicatorView()
+                self.indicator?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+                
+                self.indicator?.style = UIActivityIndicatorView.Style.whiteLarge
+            }
+            self.indicator?.startAnimating()
             
-            self.indicator?.style = UIActivityIndicatorView.Style.whiteLarge
+            guard let indicator = self.indicator, let window = self.window else {
+                preconditionFailure()
+            }
+            
+            window.addSubview(indicator)
+            indicator.bringSubviewToFront(window)
+            
+            indicator.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                window.centerXAnchor.constraint(equalTo: indicator.centerXAnchor),
+                window.centerYAnchor.constraint(equalTo: indicator.centerYAnchor),
+                window.widthAnchor.constraint(equalTo: indicator.widthAnchor),
+                window.heightAnchor.constraint(equalTo: indicator.heightAnchor),
+                ])
         }
-        self.indicator?.startAnimating()
-        
-        guard let indicator = self.indicator, let window = self.window else {
-            preconditionFailure()
-        }
-        
-        window.addSubview(indicator)
-        indicator.bringSubviewToFront(window)
-        
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            window.centerXAnchor.constraint(equalTo: indicator.centerXAnchor),
-            window.centerYAnchor.constraint(equalTo: indicator.centerYAnchor),
-            window.widthAnchor.constraint(equalTo: indicator.widthAnchor),
-            window.heightAnchor.constraint(equalTo: indicator.heightAnchor),
-            ])
-
     }
     
     func stopIndicator() {
         
-        guard let indicator = self.indicator else {
-            preconditionFailure()
+        DispatchQueue.main.async {
+            guard let indicator = self.indicator else {
+                preconditionFailure()
+            }
+            
+            indicator.stopAnimating()
+            indicator.removeFromSuperview()
         }
-        
-        indicator.stopAnimating()
-        indicator.removeFromSuperview()
-        
     }
 }

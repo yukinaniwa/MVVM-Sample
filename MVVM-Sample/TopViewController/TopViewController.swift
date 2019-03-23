@@ -45,17 +45,44 @@ final class TopViewController: UIViewController, Instantiatable {
         case modelAA
         case modelBB
         case modelCC
+        
+        var title: String {
+            switch self {
+            case .modelAA:
+                return ".modelAA"
+            case .modelBB:
+                return ".modelBB"
+            case .modelCC:
+                return ".modelCC"
+            }
+        }
     }
     
     private enum SignalZipRows: Int, CaseIterable {
         case zipModel
+        
+        var title: String {
+            switch self {
+            case .zipModel:
+                return ".zipModel"
+            }
+        }
     }
     
     private enum SignalCombineLaatestRows: Int, CaseIterable {
         case combineLatestModel
+        
+        var title: String {
+            switch self {
+            case .combineLatestModel:
+                return ".combineLatestModel"
+            }
+        }
     }
     
     @IBOutlet private weak var tableView: UITableView!
+    
+    private var topTableViewModel: TopTableViewModelType = TopTableViewModel()
     
     private var topViewModelAA: TopViewModelType = TopViewModel()
     private var topViewModelBB: TopViewModelType = TopViewModel()
@@ -74,15 +101,12 @@ final class TopViewController: UIViewController, Instantiatable {
         self.tableView.dataSource = self
         
         self.bindViewModel()
+        self.fetchViewModel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-    }
-    
-    @IBAction private func didTapedFetch(_ sender: Any) {
-        self.fetchViewModel()
     }
 }
 
@@ -137,9 +161,46 @@ extension TopViewController: UITableViewDataSource {
             return cell
         }
         
-        cell.skeletonView.startAnimating()
+        guard let section = Sections(rawValue: indexPath.section) else {
+            preconditionFailure()
+        }
         
-        cell.descriptionLabel.text = "aaa"
+        switch section {
+        case .signal:
+            
+            guard let row = SignalRows(rawValue: indexPath.row) else {
+                preconditionFailure()
+            }
+            
+            cell.descriptionLabel.text = row.title
+            
+            switch row {
+            case .modelAA:
+                cell.updateCells(enable: !self.topTableViewModel.outputs.isFinishModelAA)
+            case .modelBB:
+                cell.updateCells(enable: !self.topTableViewModel.outputs.isFinishModelBB)
+            case .modelCC:
+                cell.updateCells(enable: !self.topTableViewModel.outputs.isFinishModelCC)
+            }
+        case .signalZip:
+            
+            guard let row = SignalZipRows(rawValue: indexPath.row) else {
+                preconditionFailure()
+            }
+            
+            cell.descriptionLabel.text = row.title
+            
+            cell.updateCells(enable: !self.topTableViewModel.outputs.isFinishModelZip)
+        case .signalCombineLatest:
+            
+            guard let row = SignalCombineLaatestRows(rawValue: indexPath.row) else {
+                preconditionFailure()
+            }
+            
+            cell.descriptionLabel.text = row.title
+            
+            cell.updateCells(enable: !self.topTableViewModel.outputs.isFinishModelCombineLatest)
+        }
         
         return cell
     }
@@ -244,4 +305,16 @@ extension TopViewController {
 final class CustomCell: UITableViewCell {
     @IBOutlet weak var skeletonView: SkeletonView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    
+    func updateCells(enable: Bool) {
+        
+        self.skeletonView.isHidden = !enable
+        self.descriptionLabel.isHidden = !enable
+        
+        if enable == true {
+            self.skeletonView.startAnimating()
+        } else {
+            self.skeletonView.stopAnimating()
+        }
+    }
 }
