@@ -233,9 +233,7 @@ extension TopViewController: UITableViewDataSource {
 
 extension TopViewController {
     private func bindViewModel() {
-        
-        self.appDelegate.startIndicator()
-        
+                
         Signal.combineLatest(
             self.topViewModelAA.outputs.fetchResult,
             self.topViewModelBB.outputs.fetchResult,
@@ -329,7 +327,7 @@ extension TopViewController {
     
     private func fetchViewModel() {
         
-        self.appDelegate.startIndicator()
+//        self.appDelegate.startIndicator()
         
         self.topViewModelAA.inputs.fetch(processTime: 1.5, isForceError: false)
         self.topViewModelBB.inputs.fetch(processTime: 2.8, isForceError: false)

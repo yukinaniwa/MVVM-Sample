@@ -18,7 +18,6 @@
 		5CDD86CD223DE7A400010945 /* TopViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CDD86CC223DE7A400010945 /* TopViewController.storyboard */; };
 		5CDD86CF223DE7DC00010945 /* TopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD86CE223DE7DC00010945 /* TopViewModel.swift */; };
 		5CDD86D32246620200010945 /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD86D12246620100010945 /* SkeletonView.swift */; };
-		5CDD86D42246620200010945 /* UIViewMasking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD86D22246620100010945 /* UIViewMasking.swift */; };
 		5CDD86D62246688C00010945 /* TopTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD86D52246688C00010945 /* TopTableViewModel.swift */; };
 		5CE6FCA82235F77D00875B68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6FCA72235F77D00875B68 /* AppDelegate.swift */; };
 		5CE6FCAA2235F77D00875B68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6FCA92235F77D00875B68 /* ViewController.swift */; };
@@ -60,7 +59,6 @@
 		5CDD86CC223DE7A400010945 /* TopViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TopViewController.storyboard; sourceTree = "<group>"; };
 		5CDD86CE223DE7DC00010945 /* TopViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewModel.swift; sourceTree = "<group>"; };
 		5CDD86D12246620100010945 /* SkeletonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
-		5CDD86D22246620100010945 /* UIViewMasking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewMasking.swift; sourceTree = "<group>"; };
 		5CDD86D52246688C00010945 /* TopTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTableViewModel.swift; sourceTree = "<group>"; };
 		5CE6FCA42235F77D00875B68 /* MVVM-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MVVM-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CE6FCA72235F77D00875B68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				5CDD86D12246620100010945 /* SkeletonView.swift */,
-				5CDD86D22246620100010945 /* UIViewMasking.swift */,
 			);
 			path = SkeletonLoading;
 			sourceTree = "<group>";
@@ -424,7 +421,6 @@
 				5CDD86CB223DE79B00010945 /* TopViewController.swift in Sources */,
 				5CDD86D62246688C00010945 /* TopTableViewModel.swift in Sources */,
 				5CDD86C82237CB9600010945 /* ResponseModel.swift in Sources */,
-				5CDD86D42246620200010945 /* UIViewMasking.swift in Sources */,
 				5CE6FCAA2235F77D00875B68 /* ViewController.swift in Sources */,
 				5CE6FCA82235F77D00875B68 /* AppDelegate.swift in Sources */,
 			);

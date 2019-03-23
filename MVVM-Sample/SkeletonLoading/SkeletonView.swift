@@ -1,9 +1,9 @@
 //
 //  SkeletonView.swift
-//  SkeletonViewExample
+//  MVVM-Sample
 //
-//  Created by Roni Leshes on 3/16/18.
-//  Copyright © 2018 Roni Leshes. All rights reserved.
+//  Created by yuki naniwa on 2019/03/22.
+//  Copyright © 2019 yuki naniwa. All rights reserved.
 //
 
 import UIKit
@@ -92,7 +92,6 @@ class SkeletonView: UIView {
     
     func stopAnimating() {
         self.gradientLayer.removeAllAnimations()
-        self.gradientLayer.removeFromSuperlayer()
     }
     
 }
