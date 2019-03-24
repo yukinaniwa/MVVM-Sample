@@ -69,7 +69,7 @@ extension LoginViewController {
             case .cancel:
                 break
             case .error(let error):
-                self.alert(message: "\(error.code), \(error.message)")
+                self.alert(message: "\(error.code), \(error.message)", completion: nil)
             }
             
         }).disposed(by: disposeBag)

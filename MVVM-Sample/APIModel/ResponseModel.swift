@@ -33,4 +33,8 @@ enum ResponseModel {
     struct LoginResponseModel: Decodable {
         var userToken: String
     }
+    
+    struct TopResponseModel: Decodable {
+        var userToken: String
+    }
 }

@@ -34,7 +34,7 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func alert(message: String) {
+    func alert(message: String, completion: (() -> (Void))?) {
         let alert: UIAlertController = UIAlertController(title: nil, message: message, preferredStyle:  UIAlertController.Style.alert)
         
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
@@ -49,6 +49,8 @@ extension UIViewController {
         alert.addAction(cancelAction)
         alert.addAction(defaultAction)
         
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: {
+            completion?()
+        })
     }
 }

@@ -233,7 +233,7 @@ extension TopViewController: UITableViewDataSource {
 
 extension TopViewController {
     private func bindViewModel() {
-                
+        
         Signal.combineLatest(
             self.topViewModelAA.outputs.fetchResult,
             self.topViewModelBB.outputs.fetchResult,
@@ -246,7 +246,7 @@ extension TopViewController {
                 
                 self.tableView.reloadRows(at: [IndexPath(row: SignalCombineLaatestRows.combineLatestModel.rawValue, section: Sections.signalCombineLatest.rawValue)], with: .automatic)
                 
-                log.verbose("topResult: combineLatest: \(self), \(resultAA),\(resultBB),\(resultAA)")
+                log.verbose("topResult: combineLatest: \(resultAA),\(resultBB),\(resultCC)")
             }).disposed(by: disposeBag)
 
         
@@ -281,7 +281,7 @@ extension TopViewController {
             case .cancel:
                 break
             case .error(let error):
-                self.alert(message: "\(error.code), \(error.message)")
+                self.alert(message: "\(error.code), \(error.message)", completion: nil)
             }
             
         }).disposed(by: disposeBag)
@@ -300,7 +300,7 @@ extension TopViewController {
             case .cancel:
                 break
             case .error(let error):
-                self.alert(message: "\(error.code), \(error.message)")
+                self.alert(message: "\(error.code), \(error.message)", completion: nil)
             }
             
         }).disposed(by: disposeBag)
@@ -319,7 +319,7 @@ extension TopViewController {
             case .cancel:
                 break
             case .error(let error):
-                self.alert(message: "\(error.code), \(error.message)")
+                self.alert(message: "\(error.code), \(error.message)", completion: nil)
             }
             
         }).disposed(by: disposeBag)
@@ -331,7 +331,7 @@ extension TopViewController {
         
         self.topViewModelAA.inputs.fetch(processTime: 1.5, isForceError: false)
         self.topViewModelBB.inputs.fetch(processTime: 2.8, isForceError: false)
-        self.topViewModelCC.inputs.fetch(processTime: 4.8, isForceError: false)
+        self.topViewModelCC.inputs.fetch(processTime: 4.8, isForceError: true)
     }
 }
 

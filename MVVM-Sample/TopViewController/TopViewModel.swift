@@ -16,6 +16,8 @@ protocol TopViewModelInputs {
 
 protocol TopViewModelOutputs {
     var fetchResult:Signal<FetchResult> { get }
+    
+    var topResponseModel: ResponseModel.TopResponseModel? { get }
 }
 
 protocol TopViewModelType {
@@ -30,6 +32,7 @@ final class TopViewModel: TopViewModelType, TopViewModelInputs, TopViewModelOutp
     
     private let disposeBag = DisposeBag()
     
+    var topResponseModel: ResponseModel.TopResponseModel?
     private var fetchResultRelay = PublishRelay<FetchResult>()
     
     // MARK: - Inputs
@@ -42,10 +45,29 @@ final class TopViewModel: TopViewModelType, TopViewModelInputs, TopViewModelOutp
     func fetch(processTime: TimeInterval = 2.0, isForceError: Bool = false) {
         DispatchQueue.main.asyncAfter(deadline: .now() + processTime) {
             
-            if isForceError == false {
+            if isForceError == true {
+                self.fetchResultRelay.accept(.error(error: ResponseError(code: 400, message: "error message.")))
+                return
+            }
+            
+            let jsonString = """
+                {
+                  "userToken": "user_xxxxxxxxxx"
+                }
+            """
+            
+            guard let responseData = jsonString.data(using: .utf8) else {
+                self.fetchResultRelay.accept(.error(error: ResponseError(code: 500, message: "json perse error")))
+                return
+            }
+            
+            do {
+                let responseModel = try JSONDecoder().decode(ResponseModel.TopResponseModel.self, from: responseData)
+                
+                self.topResponseModel = responseModel
                 self.fetchResultRelay.accept(.success)
-            } else {
-                 self.fetchResultRelay.accept(.error(error: ResponseError(code: 400, message: "error message.")))
+            } catch {
+                self.fetchResultRelay.accept(.error(error: ResponseError(error: error)))
             }
         }
     }
